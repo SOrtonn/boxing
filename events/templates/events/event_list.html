@@ -1,0 +1,91 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title Fights</title>
+    <style>
+        /* CSS for title bar */
+        .title-bar {
+            background-color: #242526; /* Background color of the title bar */
+            color: white; /* Text color of the title bar */
+            padding: 10px; /* Padding around the title bar content */
+            text-align: center; /* Center align the content */
+            position: fixed; /* Fixed positioning to keep it at the top */
+            top: 0; /* Position it at the top of the viewport */
+            left: 0; /* Align it to the left */
+            width: 100%; /* Make it span the entire width of the viewport */
+            z-index: 1000; /* Set a high z-index to ensure it appears above other content */
+            font-family: Arial, sans-serif;
+        }
+
+        /* CSS for event list */
+        .event-list {
+            display: flex;
+            flex-direction: column; /* Stack items vertically */
+            justify-content: center;
+            align-items: center;
+            margin-top: 130px; /* Adjust margin top to create space between title bar and first card */
+        }
+
+        /* CSS for card styling */
+        .event-card {
+            width: 50%; /* Set the width of the cards to half of the viewport width */
+            border: 2.5px solid #c60f0f;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 10px;
+            text-align: center; /* Center the text within the cards */
+            background-color: #424343;
+            color: #e2e2e2; /* Text color */
+            font-family: Arial, sans-serif;
+            display: flex; /* Use flexbox for layout */
+            align-items: center; /* Center items vertically */
+            justify-content: center; /* Distribute items evenly along the main axis */
+        }
+
+        .event-details {
+            flex: 1; /* Allow event details to grow and take up remaining space */
+            text-align: center; /* Align text on the left */
+            padding: 0 10px; /* Add padding to separate avatar and text */
+        }
+
+        .event-title {
+            font-size: 1.5em; /* Adjust the font size for the title */
+            margin-bottom: 5px; /* Add some space below the title */
+        }
+
+        .avatar {
+            width: 125px; /* Adjust avatar image size as needed */
+            height: 125px;
+            /*border-radius: 100%; /* Round avatar image */
+        }
+
+        body {
+            background-color: #303333;
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div class="title-bar">
+        <img src="{% static 'logo1.png' %}" alt="Logo" style="width: 265px; height: auto;">
+    </div>
+    <div class="event-list">
+        {% for event in events %}
+            <div class="event-card">
+                <img src="{% static 'avatar.jpg' %}" alt="Avatar" class="avatar">
+                <div class="event-details">
+                    <div class="event-title"><strong>{{ event.title }}</strong></div>
+                    <p>Date: {{ event.date }}</p>
+                    <p>Time: {{ event.time }}</p>
+                    <p>Location: {{ event.location }}</p>
+                    <p>{{ event.event }}</p>
+                </div>
+                <img src="{% static 'avatar.jpg' %}" alt="Avatar" class="avatar">
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
